@@ -32,38 +32,61 @@ body {
   }
 }
 
-/* Card flip animation */
-.scene {
+/* New Present Box Animation */
+.present-box-scene {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 300px;
+  height: 300px;
   perspective: 1000px;
 }
 
-.card {
-  width: 100%;
-  height: 100%;
+.present-box {
   position: relative;
+  width: 150px;
+  height: 150px;
   cursor: pointer;
   transform-style: preserve-3d;
-  transition: transform 0.8s;
-  aspect-ratio: 9 / 16;
 }
 
-.card.is-flipped {
-  transform: rotateY(180deg);
-}
-
-.card__face {
+.present-box .lid {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; /* Safari */
+  width: 160px;
+  height: 40px;
+  background-color: #ef4444; /* red-500 */
+  bottom: 140px;
+  left: -5px;
+  transform-origin: bottom center;
+  transition: transform 0.5s ease-in-out;
+  border: 2px solid #dc2626; /* red-600 */
 }
 
-.card__face--back {
-  transform: rotateY(180deg);
+.present-box .box {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: #f87171; /* red-400 */
+  bottom: 0;
+  border: 2px solid #dc2626; /* red-600 */
 }
 
-/* Adjust horizontal layout card aspect ratio */
-.card.horizontal {
-  aspect-ratio: 16 / 9;
+/* Animation Trigger */
+.present-box.is-opening .lid {
+  transform: translateY(-50px) rotateX(45deg);
+}
+
+.revealed-card {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  transform: translateY(0);
+  transition: transform 0.8s 0.3s ease-out, opacity 0.5s 0.3s;
+  z-index: -1; /* Initially behind the box */
+}
+
+.present-box.is-opening + .revealed-card {
+  opacity: 1;
+  transform: translateY(-200px);
+  z-index: 10;
 }

@@ -21,7 +21,7 @@ type LayoutKey = keyof typeof layouts;
 export default function Home() {
   const [selectedTheme, setSelectedTheme] = useState<Theme>(themes[0]);
   const [selectedLayout, setSelectedLayout] = useState<LayoutKey>('default');
-  const [isCardOpen, setIsCardOpen] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
 
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
@@ -106,24 +106,23 @@ export default function Home() {
         {/* --- Preview Section --- */}
         <div className="flex flex-col justify-center items-center">
             <h2 className="text-2xl font-bold text-white text-center mb-4 bg-black/50 px-4 py-2 rounded">ライブプレビュー</h2>
-            <div className="scene w-full max-w-xl">
-              <div className={`card ${isCardOpen ? 'is-flipped' : ''}`} onClick={() => setIsCardOpen(!isCardOpen)}>
-                <div className="card__face card__face--front flex justify-center items-center rounded-lg shadow-2xl" style={{backgroundImage: selectedTheme.backgroundImage, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-                  <p className="text-2xl font-bold p-4 rounded-lg bg-black/50" style={{color: selectedTheme.fontColor}}>タップして開く</p>
-                </div>
-                <div className="card__face card__face--back">
-                  <LayoutComponent 
-                      theme={selectedTheme} 
-                      name={name} 
-                      date={date} 
-                      time={time} 
-                      location={location} 
-                      message={message} 
-                  />
-                </div>
+            <div className="present-box-scene">
+              <div className={`present-box ${isRevealed ? 'is-opening' : ''}`} onClick={() => !isRevealed && setIsRevealed(true)}>
+                <div className="lid"></div>
+                <div className="box"></div>
+              </div>
+              <div className="revealed-card">
+                <LayoutComponent 
+                    theme={selectedTheme} 
+                    name={name} 
+                    date={date} 
+                    time={time} 
+                    location={location} 
+                    message={message} 
+                />
               </div>
             </div>
-            <button onClick={() => setIsCardOpen(false)} className="mt-4 px-4 py-2 bg-gray-700 text-white rounded-md">カードを閉じる</button>
+            <button onClick={() => setIsRevealed(false)} className="mt-20 px-4 py-2 bg-gray-700 text-white rounded-md">プレゼントを閉じる</button>
         </div>
 
       </div>
