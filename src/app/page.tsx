@@ -1,13 +1,46 @@
+"use client";
+
+import { useState } from 'react';
+import { themes, Theme } from '../themes';
+
 export default function Home() {
+  const [selectedTheme, setSelectedTheme] = useState<Theme>(themes[0]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-4 sm:p-8 md:p-12 lg:p-24">
-      <div className="w-full max-w-2xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 text-pink-500">
+    <main
+      className="flex min-h-screen flex-col items-center p-4 sm:p-8 md:p-12 lg:p-24 transition-all duration-500"
+      style={{
+        backgroundImage: selectedTheme.backgroundImage,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="w-full max-w-2xl mx-auto bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+        <h1
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8"
+          style={{ color: selectedTheme.fontColor, fontFamily: selectedTheme.fontFamily }}
+        >
           誕生日カード作成
         </h1>
+
+        <div className="mb-8">
+          <h2 className="text-lg font-semibold text-center mb-4" style={{ color: selectedTheme.fontColor }}>テーマを選択</h2>
+          <div className="flex justify-center gap-4">
+            {themes.map((theme) => (
+              <button
+                key={theme.id}
+                onClick={() => setSelectedTheme(theme)}
+                className={`w-16 h-16 rounded-full border-2 ${selectedTheme.id === theme.id ? 'border-pink-500' : 'border-transparent'}`}
+                style={{ backgroundImage: theme.backgroundImage, backgroundSize: 'cover' }}
+                aria-label={theme.name}
+              ></button>
+            ))}
+          </div>
+        </div>
+
         <form className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="name" className="block text-sm font-medium" style={{ color: selectedTheme.fontColor }}>
               誕生日を迎える人
             </label>
             <input
@@ -18,7 +51,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="date" className="block text-sm font-medium" style={{ color: selectedTheme.fontColor }}>
               日時
             </label>
             <input
@@ -28,7 +61,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <label htmlFor="time" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="time" className="block text-sm font-medium" style={{ color: selectedTheme.fontColor }}>
               時間
             </label>
             <input
@@ -38,7 +71,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="location" className="block text-sm font-medium" style={{ color: selectedTheme.fontColor }}>
               場所
             </label>
             <input
@@ -49,7 +82,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="message" className="block text-sm font-medium" style={{ color: selectedTheme.fontColor }}>
               メッセージ
             </label>
             <textarea
@@ -62,7 +95,7 @@ export default function Home() {
           <div className="text-center">
             <button
               type="submit"
-              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-500 hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+              className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white ${selectedTheme.buttonColor} hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500`}
             >
               プレビュー
             </button>
