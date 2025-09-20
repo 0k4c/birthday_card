@@ -42,7 +42,7 @@ export default function Home() {
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full max-w-7xl mx-auto">
         {/* --- Editor Section --- */}
-        <div className="bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+        <div className="bg-rose-50/90 backdrop-blur-md p-8 rounded-2xl shadow-xl border-2 border-white">
           <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
             招待状を作成
           </h1>

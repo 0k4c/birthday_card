@@ -32,6 +32,26 @@ body {
   }
 }
 
+/* Custom Form Styles */
+input[type='text'],
+input[type='date'],
+input[type='time'],
+textarea {
+  background-color: #fffafc; /* a very light pink/cream */
+  border-radius: 0.75rem; /* 12px */
+  border: 2px solid #fce7f3; /* pink-100 */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type='text']:focus,
+input[type='date']:focus,
+input[type='time']:focus,
+textarea:focus {
+  outline: none;
+  border-color: #f472b6; /* pink-400 */
+  box-shadow: 0 0 0 3px #fbcfe8; /* pink-200 */
+}
+
 /* New Present Box Animation */
 .present-box-scene {
   display: flex;
