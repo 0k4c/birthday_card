@@ -25,14 +25,14 @@ const HorizontalLayout: React.FC<LayoutProps> = ({ theme, name, date, time, loca
     >
       <div className="grid grid-cols-2 gap-8 w-full">
         <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4">Happy Birthday</h2>
-          <p className="text-xl mb-6">{name || '〇〇さん'}</p>
+          <h2 className="text-4xl font-bold mb-4">Happy Birthday</h2>
+          <p className="text-2xl mb-6">{name || '〇〇さん'}</p>
         </div>
         <div className="text-left">
-          <p className="text-md mb-4">{message || 'メッセージを入力...'}</p>
-          <p className="text-sm"><strong>Date:</strong> {date || 'YYYY-MM-DD'}</p>
-          <p className="text-sm"><strong>Time:</strong> {time || 'HH:MM'}</p>
-          <p className="text-sm"><strong>Location:</strong> {location || '場所を入力...'}</p>
+          <p className="text-lg mb-4">{message || 'メッセージを入力...'}</p>
+          <p className="text-base"><strong>Date:</strong> {date || 'YYYY-MM-DD'}</p>
+          <p className="text-base"><strong>Time:</strong> {time || 'HH:MM'}</p>
+          <p className="text-base"><strong>Location:</strong> {location || '場所を入力...'}</p>
         </div>
       </div>
     </div>

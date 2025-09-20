@@ -24,9 +24,9 @@ const DefaultLayout: React.FC<LayoutProps> = ({ theme, name, date, time, locatio
       style={cardStyles}
     >
       <div className="flex-grow flex flex-col justify-center items-center">
-        <h2 className="text-4xl font-bold mb-4">Happy Birthday</h2>
-        <p className="text-2xl mb-6">{name || '〇〇さん'}</p>
-        <p className="text-lg mb-2">{message || 'メッセージを入力...'}</p>
+        <h2 className="text-5xl font-bold mb-4">Happy Birthday</h2>
+        <p className="text-3xl mb-6">{name || '〇〇さん'}</p>
+        <p className="text-xl mb-2">{message || 'メッセージを入力...'}</p>
       </div>
       <div className="flex-shrink-0">
         <p className="text-lg"><strong>Date:</strong> {date || 'YYYY-MM-DD'}</p>

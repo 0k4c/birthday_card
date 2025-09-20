@@ -21,6 +21,7 @@ type LayoutKey = keyof typeof layouts;
 export default function Home() {
   const [selectedTheme, setSelectedTheme] = useState<Theme>(themes[0]);
   const [selectedLayout, setSelectedLayout] = useState<LayoutKey>('default');
+  const [isCardOpen, setIsCardOpen] = useState(false);
 
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
@@ -83,7 +84,6 @@ export default function Home() {
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">誕生日を迎える人</label>
               <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="mt-1 block w-full px-3 py-2 rounded-md shadow-sm" placeholder="例：山田花子" />
             </div>
-            {/* ... other inputs ... */}
             <div>
               <label htmlFor="date" className="block text-sm font-medium text-gray-700">日時</label>
               <input type="date" id="date" value={date} onChange={(e) => setDate(e.target.value)} className="mt-1 block w-full px-3 py-2 rounded-md shadow-sm" />
@@ -106,14 +106,24 @@ export default function Home() {
         {/* --- Preview Section --- */}
         <div className="flex flex-col justify-center items-center">
             <h2 className="text-2xl font-bold text-white text-center mb-4 bg-black/50 px-4 py-2 rounded">ライブプレビュー</h2>
-            <LayoutComponent 
-                theme={selectedTheme} 
-                name={name} 
-                date={date} 
-                time={time} 
-                location={location} 
-                message={message} 
-            />
+            <div className="scene w-full max-w-xl">
+              <div className={`card ${isCardOpen ? 'is-flipped' : ''}`} onClick={() => setIsCardOpen(!isCardOpen)}>
+                <div className="card__face card__face--front flex justify-center items-center rounded-lg shadow-2xl" style={{backgroundImage: selectedTheme.backgroundImage, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                  <p className="text-2xl font-bold p-4 rounded-lg bg-black/50" style={{color: selectedTheme.fontColor}}>タップして開く</p>
+                </div>
+                <div className="card__face card__face--back">
+                  <LayoutComponent 
+                      theme={selectedTheme} 
+                      name={name} 
+                      date={date} 
+                      time={time} 
+                      location={location} 
+                      message={message} 
+                  />
+                </div>
+              </div>
+            </div>
+            <button onClick={() => setIsCardOpen(false)} className="mt-4 px-4 py-2 bg-gray-700 text-white rounded-md">カードを閉じる</button>
         </div>
 
       </div>
